@@ -1,0 +1,17 @@
+# compiled binaries
+chapter5-process-api/q1-variable
+chapter5-process-api/q2-filedesc
+chapter5-process-api/q3-hello-goodbye
+chapter5-process-api/q4-exec
+chapter5-process-api/q5-wait
+chapter5-process-api/q6-waitpid
+chapter5-process-api/q7-close-stdout
+chapter5-process-api/q8-pipe
+chapter6-limited-direct-execution/timer-precision
+chapter6-limited-direct-execution/syscall-cost
+chapter6-limited-direct-execution/context-switch
+
+# program output
+chapter5-process-api/q2-output.txt
+
+*.o
