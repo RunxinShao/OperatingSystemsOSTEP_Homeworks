@@ -10,6 +10,13 @@ chapter5-process-api/q8-pipe
 chapter6-limited-direct-execution/timer-precision
 chapter6-limited-direct-execution/syscall-cost
 chapter6-limited-direct-execution/context-switch
+chapter13-address-spaces/memory-user
+chapter14-memory-api/null
+chapter14-memory-api/leak
+chapter14-memory-api/overflow
+chapter14-memory-api/use-after-free
+chapter14-memory-api/bad-free
+chapter14-memory-api/vector
 
 # program output
 chapter5-process-api/q2-output.txt
