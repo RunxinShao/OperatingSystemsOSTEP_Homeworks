@@ -3,7 +3,7 @@
 # data/LABEL/. Build first with `make` (or `cc -O2 -o tlb tlb.c` etc).
 #
 # usage: ./collect.sh LABEL [CPU]
-#   LABEL  name of the output directory, e.g. vm-orbstack, mac-m5max, khoury
+#   LABEL  name of the output directory, e.g. vm-orbstack-linux, mac-m5max-macos
 #   CPU    CPU to pin to on Linux (default 1; CPU 0 handles most interrupts)
 set -e
 label=${1:?usage: $0 LABEL [CPU]}
