@@ -1,0 +1,3 @@
+gettimeofday(): reported unit 1 us, smallest non-zero step 1 us, 99.0% of back-to-back pairs saw 0, cost 9.3 ns
+clock_gettime(MONOTONIC): clock_getres 1 ns, smallest non-zero step 41 ns, cost 10.1 ns
+clock_gettime(MONOTONIC_RAW): clock_getres 1 ns, smallest non-zero step 41 ns, cost 9.5 ns

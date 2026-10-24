@@ -1,0 +1,13 @@
+label: vm-orbstack-linux
+date: Fri Oct 23 20:26:18 PDT 2026
+Linux ostep 7.0.5-orbstack-00330-ge3df4e19b0a0-dirty #1 SMP PREEMPT Sun May 10 11:47:42 UTC 2026 aarch64 GNU/Linux
+Architecture:                            aarch64
+CPU(s):                                  18
+Vendor ID:                               Apple
+Model name:                              -
+CPU(s) scaling MHz:                      100%
+MemTotal:       16411860 kB
+transparent hugepages: always [madvise] never
+pinning: sched_setaffinity to CPU 1
+page size: 4096
+cc (Ubuntu 15.2.0-4ubuntu4) 15.2.0

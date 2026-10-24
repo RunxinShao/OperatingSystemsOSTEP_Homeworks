@@ -2,6 +2,7 @@
 //
 // usage: ./tlb [-c CPU] [-s] [-d] [-n] NUMPAGES TRIALS
 //   -c CPU  pin to this CPU (default 0; -1 = don't pin)            (Q6)
+//           Linux only; macOS has no way to pin a thread, see pin()
 //   -s      spread: touch a pseudo-random cache line on each page, so the
 //           pages don't all land in the same few cache sets
 //   -d      dependent: each page holds a pointer to the next page and the
@@ -11,6 +12,11 @@
 #define _GNU_SOURCE
 #include <sched.h>
 #include <stdio.h>
+#ifdef __APPLE__
+#include <mach/mach.h>
+#include <mach/thread_policy.h>
+#include <pthread.h>
+#endif
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
@@ -18,8 +24,35 @@
 
 static double now_ns(void) {
     struct timespec ts;
-    clock_gettime(CLOCK_MONOTONIC, &ts);
+    clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
     return ts.tv_sec * 1e9 + ts.tv_nsec;
+}
+
+// Q6: keep the whole run on one CPU, and hence one TLB
+static int pin(int cpu) {
+#ifdef __linux__
+    cpu_set_t set;
+    CPU_ZERO(&set);
+    CPU_SET(cpu, &set);
+    if (sched_setaffinity(0, sizeof(set), &set) != 0) {
+        perror("sched_setaffinity");
+        return -1;
+    }
+#elif defined(__APPLE__)
+    // macOS has no call that binds a thread to a core. The closest is an
+    // affinity tag, which Apple silicon rejects (KERN_NOT_SUPPORTED). The
+    // best we can do is ask for the highest QoS class, which makes the
+    // scheduler prefer the performance cores.
+    thread_affinity_policy_data_t policy = { cpu + 1 };
+    kern_return_t kr = thread_policy_set(mach_thread_self(), THREAD_AFFINITY_POLICY,
+                                         (thread_policy_t)&policy,
+                                         THREAD_AFFINITY_POLICY_COUNT);
+    if (kr != KERN_SUCCESS)
+        fprintf(stderr, "note: thread_policy_set failed (%d), cannot pin; "
+                "using QOS_CLASS_USER_INTERACTIVE instead\n", kr);
+    pthread_set_qos_class_self_np(QOS_CLASS_USER_INTERACTIVE, 0);
+#endif
+    return 0;
 }
 
 int main(int argc, char *argv[]) {
@@ -42,16 +75,8 @@ int main(int argc, char *argv[]) {
     long numpages = atol(argv[optind]);
     long trials   = atol(argv[optind + 1]);
 
-    // Q6: keep the whole run on one CPU, and hence one TLB
-    if (cpu >= 0) {
-        cpu_set_t set;
-        CPU_ZERO(&set);
-        CPU_SET(cpu, &set);
-        if (sched_setaffinity(0, sizeof(set), &set) != 0) {
-            perror("sched_setaffinity");
-            return 1;
-        }
-    }
+    if (cpu >= 0 && pin(cpu) != 0)
+        return 1;
 
     long pagesize = sysconf(_SC_PAGESIZE);
     long jump = pagesize / sizeof(int);

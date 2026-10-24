@@ -1,0 +1,125 @@
+== 1. address space vs physical memory
+### address space bigger than physical memory
+$ python3 paging-linear-translate.py -a 64k -p 32k -c
+Error: physical memory size must be GREATER than address space size (for this simulation)
+(exit status 1)
+
+### address space equal to physical memory
+$ python3 paging-linear-translate.py -a 32k -p 32k -c
+Error: physical memory size must be GREATER than address space size (for this simulation)
+(exit status 1)
+
+### physical memory just one page bigger
+$ python3 paging-linear-translate.py -P 1k -a 16k -p 17k -u 100 -n 2 -c
+Virtual Address Trace
+  VA 0x00002737 (decimal:    10039) --> 00000737 (decimal     1847) [VPN 9]
+  VA 0x00002a06 (decimal:    10758) --> 00002a06 (decimal    10758) [VPN 10]
+(exit status 0)
+
+== 2. size limits
+### physical memory of 1 GB is rejected
+$ python3 paging-linear-translate.py -P 1m -a 512m -p 1g -c
+Error: must use smaller sizes (less than 1 GB) for this simulation.
+(exit status 1)
+
+### largest accepted sizes (1023m)
+$ python3 paging-linear-translate.py -P 1m -a 512m -p 1023m -n 2 -c
+Virtual Address Trace
+  VA 0x12bbd9ae (decimal: 314300846) --> 2cabd9ae (decimal 749459886) [VPN 299]
+  VA 0x00cf256b (decimal: 13575531) -->  Invalid (VPN 12 not valid)
+(exit status 0)
+
+### zero address space
+$ python3 paging-linear-translate.py -a 0 -c
+Error: must specify a non-zero address-space size.
+(exit status 1)
+
+### negative address space
+$ python3 paging-linear-translate.py -a -16k -c
+Error: must specify a non-zero address-space size.
+(exit status 1)
+
+### physical memory of 1 byte
+$ python3 paging-linear-translate.py -p 1 -c
+Error: must specify a non-zero physical memory size.
+(exit status 1)
+
+== 3. page size
+### address space not a power of 2
+$ python3 paging-linear-translate.py -P 1k -a 17k -p 32k -c
+Error in argument: address space must be a power of 2
+(exit status 1)
+
+### page size bigger than address space
+$ python3 paging-linear-translate.py -P 32k -a 16k -p 64k -c
+Error in argument: address space must be a multiple of the pagesize
+(exit status 1)
+
+### page size equal to address space (1 page)
+$ python3 paging-linear-translate.py -P 16k -a 16k -p 32k -n 2 -c
+Virtual Address Trace
+  VA 0x00001aea (decimal:     6890) --> 00005aea (decimal    23274) [VPN 0]
+  VA 0x00001092 (decimal:     4242) --> 00005092 (decimal    20626) [VPN 0]
+(exit status 0)
+
+### page size not a power of 2
+$ python3 paging-linear-translate.py -P 3k -a 12k -p 32k -c
+Error in argument: physical memory must be a multiple of the pagesize
+(exit status 1)
+
+### physical memory not a multiple of page size
+$ python3 paging-linear-translate.py -a 16k -p 30k -c
+Error in argument: physical memory must be a multiple of the pagesize
+(exit status 1)
+
+### 1-byte pages (works, offset is 0 bits)
+$ python3 paging-linear-translate.py -P 1 -a 16 -p 32 -n 2 -c
+Virtual Address Trace
+  VA 0x0000000c (decimal:       12) --> 0000000f (decimal       15) [VPN 12]
+  VA 0x00000008 (decimal:        8) -->  Invalid (VPN 8 not valid)
+(exit status 0)
+
+### page size 0 (crashes)
+$ python3 paging-linear-translate.py -P 0 -a 16k -c
+    if (int(float(bignum)/float(num)) != (int(bignum) / int(num))):
+            ~~~~~~~~~~~~~^~~~~~~~~~~
+ZeroDivisionError: float division by zero
+(exit status 1)
+
+== 4. -u (percent of pages used)
+### -u above 100 acts like 100
+$ python3 paging-linear-translate.py -u 101 -n 2 -c
+Virtual Address Trace
+  VA 0x00003a1e (decimal:    14878) --> 00009a1e (decimal    39454) [VPN 3]
+  VA 0x0000204c (decimal:     8268) --> 0000604c (decimal    24652) [VPN 2]
+(exit status 0)
+
+### -u below 0 acts like 0
+$ python3 paging-linear-translate.py -u -1 -n 2 -c
+Virtual Address Trace
+  VA 0x000020b8 (decimal:     8376) -->  Invalid (VPN 2 not valid)
+  VA 0x000019ea (decimal:     6634) -->  Invalid (VPN 1 not valid)
+(exit status 0)
+
+== 5. -A (explicit addresses)
+### last valid address of a 16k space
+$ python3 paging-linear-translate.py -a 16k -A 16383 -c
+  0x80000006
+Virtual Address Trace
+  VA 0x00003fff (decimal:    16383) --> 00006fff (decimal    28671) [VPN 3]
+(exit status 0)
+
+### address just past the end (crashes)
+$ python3 paging-linear-translate.py -a 16k -A 16384 -c
+    if pt[vpn] < 0:
+       ~~^^^^^
+IndexError: array index out of range
+(exit status 1)
+
+### address that is not a number (crashes)
+$ python3 paging-linear-translate.py -A 100,abc -c
+  File "/tmp/claude-501/-home-alexshao-ostep-homework/36458c03-af54-45a0-90ad-25264dd797d6/scratchpad/hwrepo/chapter18-paging/./paging-linear-translate.py", line 168, in <module>
+    vaddr = int(vStr)
+ValueError: invalid literal for int() with base 10: 'abc'
+(exit status 1)
+

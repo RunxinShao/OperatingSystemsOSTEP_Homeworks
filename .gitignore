@@ -19,10 +19,9 @@ chapter14-memory-api/bad-free
 chapter14-memory-api/vector
 chapter19-tlbs/timer
 chapter19-tlbs/tlb
+chapter19-tlbs/init-options
 
 # program output
 chapter5-process-api/q2-output.txt
-chapter19-tlbs/data/
-chapter19-tlbs/tlb.png
 
 *.o

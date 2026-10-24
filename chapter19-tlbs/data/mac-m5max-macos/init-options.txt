@@ -1,0 +1,18 @@
+none      setup    0.01 ms   first timed pass  2449.0 ns/page
+none      setup    0.01 ms   first timed pass  1177.2 ns/page
+none      setup    0.01 ms   first timed pass   893.4 ns/page
+calloc    setup    0.00 ms   first timed pass   816.0 ns/page
+calloc    setup    0.00 ms   first timed pass   733.7 ns/page
+calloc    setup    0.00 ms   first timed pass   637.4 ns/page
+read      setup    4.99 ms   first timed pass     7.0 ns/page
+read      setup    4.53 ms   first timed pass     8.0 ns/page
+read      setup    4.29 ms   first timed pass     6.1 ns/page
+touch     setup    4.29 ms   first timed pass     6.0 ns/page
+touch     setup    4.18 ms   first timed pass     5.7 ns/page
+touch     setup    4.53 ms   first timed pass     5.8 ns/page
+memset    setup    4.93 ms   first timed pass     6.9 ns/page
+memset    setup    5.02 ms   first timed pass     6.8 ns/page
+memset    setup    5.03 ms   first timed pass     6.9 ns/page
+MAP_POPULATE is Linux only
+MAP_POPULATE is Linux only
+MAP_POPULATE is Linux only
