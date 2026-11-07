@@ -1,0 +1,5 @@
+counter: cntvct_el0, frequency 24000000 Hz (tick = 41.7 ns)
+gettimeofday()             smallest step   1000.0 ns   unchanged  98.1%   cost/call  18.9 ns
+clock_gettime(MONOTONIC)   smallest step     41.0 ns   unchanged  70.1%   cost/call  12.5 ns
+cycle counter              smallest step     41.6 ns   unchanged  73.4%   cost/call  11.1 ns
+usleep(10000) measured as: gettimeofday 14.670 ms, monotonic 14.670 ms, counter 14.670 ms

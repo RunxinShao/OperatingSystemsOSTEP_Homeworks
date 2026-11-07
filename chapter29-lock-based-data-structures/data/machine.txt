@@ -1,0 +1,5 @@
+date: Fri Nov  6 21:02:24 PST 2026
+Linux ostep 7.0.5-orbstack-00330-ge3df4e19b0a0-dirty #1 SMP PREEMPT Sun May 10 11:47:42 UTC 2026 aarch64 GNU/Linux
+cpus: 18
+MemTotal:       16411860 kB
+gcc (Ubuntu 15.2.0-4ubuntu4) 15.2.0

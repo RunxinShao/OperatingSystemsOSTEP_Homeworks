@@ -20,6 +20,11 @@ chapter14-memory-api/vector
 chapter19-tlbs/timer
 chapter19-tlbs/tlb
 chapter19-tlbs/init-options
+chapter29-lock-based-data-structures/timer
+chapter29-lock-based-data-structures/counter
+chapter29-lock-based-data-structures/approx
+chapter29-lock-based-data-structures/list
+chapter29-lock-based-data-structures/btree
 
 # program output
 chapter5-process-api/q2-output.txt
