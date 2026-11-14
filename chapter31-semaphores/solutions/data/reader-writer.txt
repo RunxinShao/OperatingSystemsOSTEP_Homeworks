@@ -1,0 +1,11 @@
+$ READ_US=10000 WRITE_US=10000 ./reader-writer 3 2 5
+longest wait: writer 118.3 ms, reader 0.0 ms begin read 0 read 0 read 0 read 
+0 read 0 read 0 read 0 read 0 read 0 read 0 read 0 read 0 read 0 read 0 read 
+0 write 1 write 2 write 3 write 4 write 5 write 6 write 7 write 8 write 9 
+write 10 end: value 10
+$ READ_US=1000 ./reader-writer 8 2 200 > /dev/null   (run 1)
+longest wait: writer 577.5 ms, reader 0.0 ms
+$ READ_US=1000 ./reader-writer 8 2 200 > /dev/null   (run 2)
+longest wait: writer 376.0 ms, reader 0.0 ms
+$ READ_US=1000 ./reader-writer 8 2 200 > /dev/null   (run 3)
+longest wait: writer 376.1 ms, reader 0.0 ms

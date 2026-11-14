@@ -1,0 +1,84 @@
+$ ./mutex-nostarve 2 1 ns
+thread  0: acquired   558173 times, worst overtaken      2
+thread  1: acquired   440861 times, worst overtaken      2
+counter 999034 (sum of acquisitions 999034: ok)
+summary: min 440861, max 558173 acquisitions per thread, worst overtaken 2
+$ ./mutex-nostarve 2 1 sem
+thread  0: acquired  2498515 times, worst overtaken  12784
+thread  1: acquired  2523877 times, worst overtaken   2992
+counter 5022392 (sum of acquisitions 5022392: ok)
+summary: min 2498515, max 2523877 acquisitions per thread, worst overtaken 12784
+$ ./mutex-nostarve 4 1 ns
+thread  0: acquired    31235 times, worst overtaken      6
+thread  1: acquired    31085 times, worst overtaken      6
+thread  2: acquired    30992 times, worst overtaken      6
+thread  3: acquired   136886 times, worst overtaken      6
+counter 230198 (sum of acquisitions 230198: ok)
+summary: min 30992, max 136886 acquisitions per thread, worst overtaken 6
+$ ./mutex-nostarve 4 1 sem
+thread  0: acquired  1792007 times, worst overtaken  32343
+thread  1: acquired  1803135 times, worst overtaken  32201
+thread  2: acquired  1801783 times, worst overtaken  34252
+thread  3: acquired  1818167 times, worst overtaken  31465
+counter 7215092 (sum of acquisitions 7215092: ok)
+summary: min 1792007, max 1818167 acquisitions per thread, worst overtaken 34252
+$ ./mutex-nostarve 8 1 ns
+thread  0: acquired    17720 times, worst overtaken     14
+thread  1: acquired    17413 times, worst overtaken     14
+thread  2: acquired    17404 times, worst overtaken     14
+thread  3: acquired    17411 times, worst overtaken     14
+thread  4: acquired    17413 times, worst overtaken     14
+thread  5: acquired    17397 times, worst overtaken     14
+thread  6: acquired    17421 times, worst overtaken     14
+thread  7: acquired    17411 times, worst overtaken     14
+counter 139590 (sum of acquisitions 139590: ok)
+summary: min 17397, max 17720 acquisitions per thread, worst overtaken 14
+$ ./mutex-nostarve 8 1 sem
+thread  0: acquired   634856 times, worst overtaken  16081
+thread  1: acquired   636839 times, worst overtaken   5982
+thread  2: acquired   625305 times, worst overtaken  18301
+thread  3: acquired   616318 times, worst overtaken   7476
+thread  4: acquired   572368 times, worst overtaken  17787
+thread  5: acquired   622217 times, worst overtaken  18309
+thread  6: acquired   640752 times, worst overtaken   1874
+thread  7: acquired   657208 times, worst overtaken   1363
+counter 5005863 (sum of acquisitions 5005863: ok)
+summary: min 572368, max 657208 acquisitions per thread, worst overtaken 18309
+$ ./mutex-nostarve 16 1 ns
+thread  0: acquired    12847 times, worst overtaken     29
+thread  1: acquired    12411 times, worst overtaken     28
+thread  2: acquired    12417 times, worst overtaken     30
+thread  3: acquired    12421 times, worst overtaken     28
+thread  4: acquired    12413 times, worst overtaken     29
+thread  5: acquired    12406 times, worst overtaken     28
+thread  6: acquired    12420 times, worst overtaken     29
+thread  7: acquired    12375 times, worst overtaken     29
+thread  8: acquired    12417 times, worst overtaken     27
+thread  9: acquired    12417 times, worst overtaken     30
+thread 10: acquired    12420 times, worst overtaken     28
+thread 11: acquired    12420 times, worst overtaken     29
+thread 12: acquired    12420 times, worst overtaken     28
+thread 13: acquired    12413 times, worst overtaken     30
+thread 14: acquired    12414 times, worst overtaken     29
+thread 15: acquired    12410 times, worst overtaken     27
+counter 199041 (sum of acquisitions 199041: ok)
+summary: min 12375, max 12847 acquisitions per thread, worst overtaken 30
+$ ./mutex-nostarve 16 1 sem
+thread  0: acquired   143503 times, worst overtaken    983
+thread  1: acquired   141765 times, worst overtaken   2500
+thread  2: acquired   138750 times, worst overtaken    829
+thread  3: acquired   139865 times, worst overtaken   2634
+thread  4: acquired   141707 times, worst overtaken    917
+thread  5: acquired   141275 times, worst overtaken    852
+thread  6: acquired   137901 times, worst overtaken   2112
+thread  7: acquired   140470 times, worst overtaken    815
+thread  8: acquired   142514 times, worst overtaken    897
+thread  9: acquired   141330 times, worst overtaken   1068
+thread 10: acquired   140292 times, worst overtaken   2550
+thread 11: acquired   141761 times, worst overtaken    630
+thread 12: acquired   140636 times, worst overtaken   1020
+thread 13: acquired   142762 times, worst overtaken    985
+thread 14: acquired   139948 times, worst overtaken   2667
+thread 15: acquired   142499 times, worst overtaken   1016
+counter 2256978 (sum of acquisitions 2256978: ok)
+summary: min 137901, max 143503 acquisitions per thread, worst overtaken 2667

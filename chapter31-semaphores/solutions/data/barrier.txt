@@ -1,0 +1,22 @@
+$ ./barrier 4
+parent: begin
+child 0: before
+child 1: before
+child 2: before
+child 3: before
+child 3: after
+child 1: after
+child 0: after
+child 2: after
+parent: end
+$ LATE=1 ./barrier 4      (first arrival sleeps 1 s)
+ 0.00 s  parent: begin
+ 0.00 s  child 0: before
+ 0.00 s  child 1: before
+ 0.00 s  child 2: before
+ 0.00 s  child 3: before
+ 1.00 s  child 0: after
+ 1.00 s  child 3: after
+ 1.00 s  child 1: after
+ 1.00 s  child 2: after
+ 1.00 s  parent: end

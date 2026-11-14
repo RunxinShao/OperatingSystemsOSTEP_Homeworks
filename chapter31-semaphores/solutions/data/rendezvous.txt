@@ -1,0 +1,21 @@
+$ ./rendezvous 
+parent: begin
+child 1: before
+child 2: before
+child 2: after
+child 1: after
+parent: end
+$ ./rendezvous 1
+parent: begin
+child 2: before
+child 1: before
+child 1: after
+child 2: after
+parent: end
+$ ./rendezvous 2
+parent: begin
+child 1: before
+child 2: before
+child 2: after
+child 1: after
+parent: end
