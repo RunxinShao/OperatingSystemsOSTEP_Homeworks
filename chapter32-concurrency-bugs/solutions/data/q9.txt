@@ -1,0 +1,28 @@
+# check-atomic: does every vector stay uniform? (-d pattern, 1000 trials)
+== check-atomic-global-order n=2
+non-uniform results: 0/1000 (n=2, l=20)
+== check-atomic-global-order n=4
+non-uniform results: 0/1000 (n=4, l=20)
+== check-atomic-global-order n=8
+non-uniform results: 0/1000 (n=8, l=20)
+== check-atomic-try-wait n=2
+non-uniform results: 0/1000 (n=2, l=20)
+== check-atomic-try-wait n=4
+non-uniform results: 0/1000 (n=4, l=20)
+== check-atomic-try-wait n=8
+non-uniform results: 0/1000 (n=8, l=20)
+== check-atomic-avoid-hold-and-wait n=2
+non-uniform results: 0/1000 (n=2, l=20)
+== check-atomic-avoid-hold-and-wait n=4
+non-uniform results: 0/1000 (n=4, l=20)
+== check-atomic-avoid-hold-and-wait n=8
+non-uniform results: 0/1000 (n=8, l=20)
+== check-atomic-nolock n=2
+first non-uniform trial 0: v0[0]=501479 v0[99]=501864
+non-uniform results: 78/1000 (n=2, l=20)
+== check-atomic-nolock n=4
+first non-uniform trial 6: v0[0]=545148993 v0[99]=-1023661335
+non-uniform results: 309/1000 (n=4, l=20)
+== check-atomic-nolock n=8
+first non-uniform trial 11: v0[0]=388131552 v0[99]=388131552
+non-uniform results: 255/1000 (n=8, l=20)

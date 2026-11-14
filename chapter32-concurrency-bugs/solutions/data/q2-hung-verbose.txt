@@ -1,0 +1,8 @@
+# timeout 1 stdbuf -oL ./vector-deadlock -n 2 -l 100000 -d -v  (attempt 2, exit 124)
+# total lines: 222678
+<-add(0, 1)
+->add(0, 1)
+<-add(0, 1)
+->add(0, 1)
+# last thread-0 line: 222678:->add(0, 1)
+# last thread-1 line: 218088:              ->add(1, 0)

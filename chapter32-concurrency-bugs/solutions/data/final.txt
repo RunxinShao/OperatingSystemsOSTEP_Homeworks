@@ -1,0 +1,19 @@
+# all variants, -l 1000000, median of 5 (seconds), limit 30s/run.
+# 'same' = no -p (all threads on v[0],v[1]); 'sep' = -p.
+# -d is passed to every variant except vector-deadlock without -p.
+## same
+| variant | -n 2 | -n 4 | -n 8 | -n 16 |
+|---|---|---|---|---|
+| vector-deadlock | 0.11 | 0.19 | 0.32 | 0.59 |
+| vector-global-order | 0.10 | 0.21 | 0.34 | 0.63 |
+| vector-try-wait | 0.16 | >30 | >30 | >30 |
+| vector-avoid-hold-and-wait | 0.13 | 0.17 | 0.32 | 0.64 |
+| vector-nolock | 0.38 | 3.09 | 4.99 | 14.00 |
+## sep
+| variant | -n 2 | -n 4 | -n 8 | -n 16 |
+|---|---|---|---|---|
+| vector-deadlock | 0.05 | 0.09 | 0.12 | 0.18 |
+| vector-global-order | 0.05 | 0.08 | 0.12 | 0.18 |
+| vector-try-wait | 0.05 | 0.09 | 0.13 | 0.18 |
+| vector-avoid-hold-and-wait | 0.17 | 0.32 | 0.86 | 2.04 |
+| vector-nolock | 0.12 | 0.12 | 0.12 | 0.13 |

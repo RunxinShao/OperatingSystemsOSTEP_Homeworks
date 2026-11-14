@@ -1,0 +1,8 @@
+# vector_add(&v[0], &v[0]) with each variant, timeout 1s
+== self-add-deadlock
+calling vector_add(&v[0], &v[0])...
+exit=124
+== self-add-global-order
+calling vector_add(&v[0], &v[0])...
+returned; v[0].values[0] = 2
+exit=0
